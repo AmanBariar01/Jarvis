@@ -13,10 +13,6 @@ engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id)
 
-dict1 = {
-    "David": "amanbariar22@gmail.com"
-}
-
 
 def speak(audio):
     engine.say(audio)
@@ -59,14 +55,6 @@ def takecommand():
     return query
 
 
-def sendEmail(to, content):
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.ehlo()
-    server.starttls()
-    server.login('abrgamer22@gmail.com', 'ABRgamer@2222')
-    server.sendmail("abrgamer22@gmail.com", to, content)
-    server.close()
-
 
 if __name__ == '__main__':
     wishme()
@@ -87,11 +75,6 @@ if __name__ == '__main__':
         elif 'open google' in query:
             webbrowser.open("https://www.google.com/")
 
-        elif 'play my songs' in query:
-            music_dir = 'G:\\Recordings'
-            songs = os.listdir(music_dir)
-            d = random.choice(songs)
-            os.startfile(os.path.join(music_dir, d))
 
         elif 'the time' in query:
             strTime = datetime.datetime.now().strftime("%I:%M %p")
@@ -115,18 +98,6 @@ if __name__ == '__main__':
             e = "C:\\Users\\Aman Bariar\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
             os.startfile(e)
 
-        elif 'send email to' in query:
-            try:
-                speak("What Should I Say?")
-                content = takecommand()
-                to = dict1["David"]
-                sendEmail(to, content)
-                speak("Email Has Been Sent!")
-
-            except Exception as e:
-                print(e)
-                speak("Sorry. I am Not Able to the Send this Email")
-
         elif 'play song' in query:
             query = query.replace('play song', '')
             result = query
@@ -134,7 +105,7 @@ if __name__ == '__main__':
             pywhatkit.playonyt(result)
 
         elif 'introduce' in query:
-            speak("I am Jarvis Made by Mister Aman Bariar . My Work Is To Help Aman & Make His Work Easy")
+            speak("I am Jarvis Made by Mister Aman Bariar. My Work Is To Help Aman & Make His Work Easy")
 
         elif 'how old are you' in query:
             speak(" I Don't Know That ")
